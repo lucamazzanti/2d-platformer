@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float knockbackCounter;
     public float knockbackLength;
     public int knockbackForce;
+    public int bounceForce;
 
     void Awake()
     {
@@ -106,5 +107,10 @@ public class PlayerController : MonoBehaviour
     public void StopKnockback()
     {
         knockbackCounter = 0;
+    }
+
+    public void Bounce()
+    {
+        _rb.velocity = new Vector2(_rb.velocity.x, bounceForce);
     }
 }

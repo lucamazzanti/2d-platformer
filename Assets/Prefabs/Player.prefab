@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 1221446749073792287}
   - component: {fileID: 1221446749073792285}
   - component: {fileID: 1221446749073792282}
+  - component: {fileID: 967461773}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 213040823
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7815371044791450175, guid: d0ff653f4b4d3f14dab1926a9ed3efb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -142,6 +143,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 1221446749784842831}
+  knockbackCounter: 0
+  knockbackLength: 0.25
+  knockbackForce: 5
 --- !u!95 &1221446749073792282
 Animator:
   serializedVersion: 3
@@ -161,6 +165,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &967461773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221446749073792480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e89810e8fd69b47a5eb5269ba0be70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 6
+  maxHealth: 6
+  invincibleLength: 1
+  invincibleCounter: 0
+  deathEffect: {fileID: 7774718603804309290, guid: f146c8f98b73f954083d3efc22379439, type: 3}
 --- !u!1 &1221446749784842830
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1221446749784842831}
   m_Layer: 7
-  m_Name: ground_point
+  m_Name: Ground Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
