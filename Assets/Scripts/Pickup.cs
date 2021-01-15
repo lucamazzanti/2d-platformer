@@ -31,13 +31,14 @@ public class Pickup : MonoBehaviour
             if (isGem)
             {
                 LevelManager.instance.PickupGem();
-
                 Instantiate(pickupAnimation, transform.position, transform.rotation);
+                AudioManager.instance.PlaySoundEffect("Pickup Gem");
             }
 
             if (isHeal)
             {
                 PlayerHealthController.instance.Heal();
+                AudioManager.instance.PlaySoundEffect("Pickup Health");
             }
             
             Destroy(gameObject);

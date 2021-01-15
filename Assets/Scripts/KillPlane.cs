@@ -20,6 +20,8 @@ public class KillPlane : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            AudioManager.instance.PlaySoundEffect("Player Death");
+
             LevelManager.instance.RespawnPlayer();
         }
     }

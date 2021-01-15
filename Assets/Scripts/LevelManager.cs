@@ -35,7 +35,11 @@ public class LevelManager : MonoBehaviour
     {
         PlayerController.instance.gameObject.SetActive(false);
 
+        //AudioManager.instance.PlaySoundEffect("Player Death");
+
         yield return new WaitForSeconds(respawnTime);
+
+        AudioManager.instance.PlaySoundEffect("Map Movement");
 
         PlayerController.instance.gameObject.transform.position = CheckpointController.instance.spawnPoint;
 

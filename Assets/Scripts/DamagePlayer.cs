@@ -18,8 +18,8 @@ public class DamagePlayer : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            //Debug.Log("Hit");
             PlayerHealthController.instance.TakeDamage();
+
             PlayerController.instance.Knockback();
         }
     }

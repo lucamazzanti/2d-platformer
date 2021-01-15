@@ -52,7 +52,13 @@ public class PlayerHealthController : MonoBehaviour
             {
                 Instantiate(deathEffect, transform.position, transform.rotation);
 
+                AudioManager.instance.PlaySoundEffect("Player Death");
+
                 LevelManager.instance.RespawnPlayer();
+            }
+            else
+            {
+                AudioManager.instance.PlaySoundEffect("Player Hurt");
             }
 
             UIController.instance.UpdateHealth(currentHealth);

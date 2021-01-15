@@ -59,12 +59,14 @@ public class PlayerController : MonoBehaviour
                 if (isGrounded)
                 {
                     _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+                    AudioManager.instance.PlaySoundEffect("Player Jump");
                 }
                 else
                 {
                     if (canDoubleJump)
                     {
                         _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+                        AudioManager.instance.PlaySoundEffect("Player Jump");
                         canDoubleJump = false;
                     }
                 }

@@ -24,10 +24,13 @@ public class StompBox : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            //Debug.Log("Hit enemy");
             collision.transform.parent.gameObject.SetActive(false);
+
             Instantiate(deathEffect, collision.transform.position, collision.transform.rotation);
+
             PlayerController.instance.Bounce();
+
+            AudioManager.instance.PlaySoundEffect("Enemy Explode");
 
             if (Random.Range(0, 100) > dropRate)
             {
