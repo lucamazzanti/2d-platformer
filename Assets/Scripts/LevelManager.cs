@@ -37,7 +37,13 @@ public class LevelManager : MonoBehaviour
 
         //AudioManager.instance.PlaySoundEffect("Player Death");
 
-        yield return new WaitForSeconds(respawnTime);
+        yield return new WaitForSeconds(respawnTime - (1f / UIController.instance.fadeSpeed));
+
+        UIController.instance.FadeToBlack();
+
+        yield return new WaitForSeconds((1f / UIController.instance.fadeSpeed) + .2f);
+
+        UIController.instance.FadeFromBlack();
 
         AudioManager.instance.PlaySoundEffect("Map Movement");
 

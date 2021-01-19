@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.instance.isPaused) return;
+
         if (knockbackCounter <= 0)
         {
             _rb.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), _rb.velocity.y);
