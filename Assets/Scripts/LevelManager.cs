@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class LevelManager : MonoBehaviour
 
     public int respawnTime;
     public int collectedGems;
+    public string nextSceneName;
 
     void Awake()
     {
@@ -63,5 +65,25 @@ public class LevelManager : MonoBehaviour
         collectedGems++;
 
         UIController.instance.UpdateGems(collectedGems);
+    }
+
+    public void EndLevel()
+    {
+        StartCoroutine(EndLevelCoroutine());
+    }
+
+    private IEnumerator EndLevelCoroutine()
+    {
+        PlayerController.instance.blockInput = true;
+
+        CameraController.instance.stopfollowTarget = true;
+
+        UIController.instance.endLevelText.gameObject.SetActive(true);
+
+        UIController.instance.FadeToBlack();
+
+        yield return new WaitForSeconds((1f / UIController.instance.fadeSpeed) + .2f);
+
+        SceneManager.LoadScene(nextSceneName);
     }
 }

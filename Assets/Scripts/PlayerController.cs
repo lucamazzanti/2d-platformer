@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public int knockbackForce;
     public int bounceForce;
 
+    public bool blockInput;
+
     void Awake()
     {
         instance = this;
@@ -43,60 +45,61 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PauseMenu.instance.isPaused) return;
-
-        if (knockbackCounter <= 0)
+        if (!PauseMenu.instance.isPaused && !blockInput)
         {
-            _rb.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), _rb.velocity.y);
-
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
-
-            if (isGrounded)
+            if (knockbackCounter <= 0)
             {
-                canDoubleJump = true;
-            }
+                _rb.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), _rb.velocity.y);
 
-            if (Input.GetButtonDown("Jump"))
-            {
+                isGrounded = Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
+
                 if (isGrounded)
                 {
-                    _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
-                    AudioManager.instance.PlaySoundEffect("Player Jump");
+                    canDoubleJump = true;
                 }
-                else
+
+                if (Input.GetButtonDown("Jump"))
                 {
-                    if (canDoubleJump)
+                    if (isGrounded)
                     {
                         _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
                         AudioManager.instance.PlaySoundEffect("Player Jump");
-                        canDoubleJump = false;
+                    }
+                    else
+                    {
+                        if (canDoubleJump)
+                        {
+                            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+                            AudioManager.instance.PlaySoundEffect("Player Jump");
+                            canDoubleJump = false;
+                        }
                     }
                 }
-            }
 
-            if (_rb.velocity.x > 0)
-            {
-                _spriteRenderer.flipX = false;
-            }
-            else if (_rb.velocity.x < 0)
-            {
-                _spriteRenderer.flipX = true;
-            }
+                if (_rb.velocity.x > 0)
+                {
+                    _spriteRenderer.flipX = false;
+                }
+                else if (_rb.velocity.x < 0)
+                {
+                    _spriteRenderer.flipX = true;
+                }
 
-            _animator.SetBool("isGrounded", isGrounded);
-            _animator.SetFloat("moveSpeed", Math.Abs(_rb.velocity.x));
-        }
-        else
-        {
-            knockbackCounter -= Time.deltaTime;
-
-            if (_spriteRenderer.flipX)
-            {
-                _rb.velocity = new Vector2(knockbackForce, _rb.velocity.y);
+                _animator.SetBool("isGrounded", isGrounded);
+                _animator.SetFloat("moveSpeed", Math.Abs(_rb.velocity.x));
             }
             else
             {
-                _rb.velocity = new Vector2(-knockbackForce, _rb.velocity.y);
+                knockbackCounter -= Time.deltaTime;
+
+                if (_spriteRenderer.flipX)
+                {
+                    _rb.velocity = new Vector2(knockbackForce, _rb.velocity.y);
+                }
+                else
+                {
+                    _rb.velocity = new Vector2(-knockbackForce, _rb.velocity.y);
+                }
             }
         }
     }

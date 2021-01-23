@@ -17,6 +17,8 @@ public class UIController : MonoBehaviour
     public float fadeSpeed;
     private bool shouldFadeToBlack, shouldFadeFromBlack;
 
+    public Text endLevelText;
+
     void Awake()
     {
         instance = this;

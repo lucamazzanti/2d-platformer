@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance;
+
     public Transform target;
 
     public Transform background;
@@ -13,6 +15,13 @@ public class CameraController : MonoBehaviour
     public float lastYPosition;
     public float minHeigth;
     public float maxHeigth;
+
+    public bool stopfollowTarget;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +33,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stopfollowTarget) return;
+
         transform.position = new Vector3(target.position.x, Mathf.Clamp(target.position.y,minHeigth,maxHeigth), transform.position.z);
 
         //parallax
