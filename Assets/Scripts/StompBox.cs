@@ -6,7 +6,7 @@ public class StompBox : MonoBehaviour
 {
     public GameObject deathEffect;
     public GameObject collectible;
-    [Range(0, 100)] private int dropRate;
+    [Range(0, 100)] public int dropRate;
 
     // Start is called before the first frame update
     void Start()
