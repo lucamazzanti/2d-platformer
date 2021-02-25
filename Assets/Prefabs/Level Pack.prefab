@@ -9178,7 +9178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnTime: 2
   collectedGems: 0
-  nextSceneName: Main Menu
+  nextSceneName: Level Select
 --- !u!1 &3569273622171415715
 GameObject:
   m_ObjectHideFlags: 0

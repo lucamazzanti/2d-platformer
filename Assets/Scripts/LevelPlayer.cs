@@ -40,8 +40,8 @@ public class LevelPlayer : MonoBehaviour
                 currentPoint = currentPoint.left;
             }
 
-            if (levelController != null && currentPoint.isLevel && !string.IsNullOrEmpty(currentPoint.levelName) 
-                && Input.GetKeyDown(KeyCode.Space))
+            if (levelController != null && currentPoint.isLevel && !string.IsNullOrEmpty(currentPoint.levelName)
+                && !currentPoint.isLocked && Input.GetKeyDown(KeyCode.Space))
             {
                 levelController.LoadScene(currentPoint.levelName);
             }
